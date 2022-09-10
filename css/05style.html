@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>forms</title>
+    <style>
+        .one{
+            height: 2em;
+            width: 2em;
+           
+        }
+    </style>
+</head>
+<body >
+    <h2>Create an Account</h2>
+    <form action="process.php" class="one">
+        <div>
+            <label for="name">full Name</label><br>
+            <input type="text" id="name" name="name">
+        </div>
+        <div>
+            <label for="email">Email</label><br>
+            <input type="email" id="email" name="email">
+        </div>
+        <div>
+            <label for="password">Password</label><br>
+            <input type="password" id="password" name="password">
+
+        </div>
+        <div>
+            <label for="age">Age</label>
+            <input type="number" name="age" id="age" placeholder="select Age">
+           
+        </div>
+        <div>
+            <label for="message">Message</label><br>
+            <textarea name="message" id="message" placeholder="Tell us a little about yourself" cols="100"
+            rows="10"></textarea>
+        </div>
+        <div style="height: 2em;">
+            <input type="checkbox">
+           
+        </div>
+        <input type="submit" value="sign up">
+    </form>
+    
+</body>
+</html>
