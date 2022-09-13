@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tooltip</title>
+    <style>
+        
+        body{
+            background-color: darksalmon;
+            width: 70vh;
+            box-sizing: border-box;
+            margin: 10vh;
+            display: flex; 
+        }
+        span[data-tooltip]{
+            position: relative;
+            background-color: darkseagreen;
+           
+        }
+        span[data-tooltip]:hover::after,span[data-tooltip]:focus::after{
+            content: attr(data-tooltip);
+            border: solid none 1px ;
+            background-color: yellow;
+            text-decoration:none;
+            position: absolute;
+            top: 20px;
+            left: 0;
+           
+        }
+    </style>
+</head>
+<body>
+    <div class="one">
+        <span>
+        <p>
+           Lorem ipsum dolor sit amet consectetur adipisicing elit. Est sit culpa non nesciunt quod enim quia modi voluptatem recusandae aut facere adipisci itaque maxime, dolorem amet veritatis quaerat expedita reprehenderit ad eveniet iusto quae iste eum! Aspernatur hic <span  data-tooltip="this is a babass tooltip "> corrupti </span>iure dolor commodi impedit nihil iste. Cumque quis eveniet perferendis! Mollitia tempore dolor non! Eveniet eligendi laborum illum hic modi!
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Est sit culpa non nesciunt quod enim quia modi voluptatem recusandae aut facere adipisci itaque maxime, dolorem amet veritatis quaerat expedita reprehenderit ad eveniet iusto quae iste eum! Aspernatur hic <span data-tooltip="this is a second tooltip "> corrupti </span>iure dolor commodi impedit nihil iste. Cumque quis eveniet perferendis! Mollitia tempore dolor non! Eveniet eligendi laborum illum hic modi!
+         </p>
+    </span>
+
+    </div>
+    
+</body>
+</html>

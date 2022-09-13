@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cool border</title>
+    <style>
+        body{
+            box-sizing: border-box;
+            background-color: rgb(216, 92, 92);
+            top: 150px;
+            left: 200px;
+            position: absolute;
+            
+        }
+        .box{
+            background-color: black;
+            color: white;
+            width: 200px;
+            height: 150px;
+            border: 3px solid red;
+            text-align: center;
+        }
+        .box::before{
+            content: " ";
+ 
+        }  
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div>cool Border</div>
+        </div>
+    
+</body>
+</html>
