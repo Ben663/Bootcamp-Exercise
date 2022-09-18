@@ -9,65 +9,46 @@
     <style>
         .grid-continer {
             display: grid;
-            grid-template-columns: auto auto auto;
-            padding: 100px;
-            justify-content: center;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1vh;
+            padding: 40px;
+        }
+        #box{
+            height: 60px;
+            border: 1px solid;
+            border-radius: 10px;
         }
         .grid-item {
             background-color: red;
-            border: 1px solid;
-            border-radius: 10px;
-            width: 100%;
-            height: 100%;
+            grid-column: 1 / span 2;
         }
-
         .grid-item2 {
             background-color: blue;
-            border: 1px solid;
-            border-radius: 10px;
-            padding: 20px;
-            margin-left: 40px;
+            grid-column: 3 / span 2;
         }
-
         .grid-item3 {
             background-color: green;
-            border: 1px solid;
-            border-radius: 10px;
-            width: 85px;
-            padding: 20px;
-            margin-top: 10px;
+            grid-column: 1 / span 1;
         }
         .grid-item4 {
             background-color: blueviolet;
-            border: 1px solid;
-            border-radius: 10px;
-            width: 100px;
-            padding: 20px;
-            margin-top: 10px;
-    
-            
+            grid-column: 2 / span 3;
         }
          .grid-item5 {
             background-color: yellow;
-            border: 1px solid;
-            border-radius: 10px;
-            margin-top: 20px;
-            width: 100px;
-            padding: 50px;
-            height: 5px;
+            grid-column: 1 / span 4;
         }
+
     </style>
 </head>
 
 <body>
     <div class="grid-continer">
-        <div class="grid-item"></div>
-        <div class="grid-item2"></div>
-        <br>
-        <div class="grid-item3"></div>
-        <div class="grid-item4"></div>
-        <br>
-        <div class="grid-item5"></div>
+        <div id='box' class="grid-item"></div>
+        <div id='box' class="grid-item2"></div>
+        <div id='box' class="grid-item3"></div>
+        <div id='box' class="grid-item4"></div>
+        <div id='box' class="grid-item5"></div>
     </div>
 
 </body>
