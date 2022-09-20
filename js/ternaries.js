@@ -1,29 +1,29 @@
-// 01
-//function pass1 (password){
-//     if(password.length > 7){
-//         console.log('Strong');
-//     }else if (password.length < 7)
-//     {
-//         console.log('weak');
-//     }
-// }
-// pass1('abckjhfg');
-
-// 02
-// function pass2 (password){
-//     password.length < 7 ? console.log('Weak') : console.log('Strong'); ;
-// }
-// pass2('ac ');
- 
-// 03
-// function pass3 (password){
-//     password.length >= 7 && console.log('Strong');
-//     password.length < 7 && console.log('Weak');
-// }
-// pass3('acdegriu');
-
-// 04
-function advanced (password){
-    password.length > 7 ? password == password.tolowerCase ? 'Strong' : 'VereStrong' : 'Weak';
+//01
+function pass1 (password){
+    if(password.length > 7){
+        console.log('Strong');
+    }else if (password.length < 7)
+    {
+        console.log('weak');
+    }
 }
-advanced('cPbvmgt');
+pass1('abckjhfg');
+
+//02
+function pass2 (password){
+    return password.length < 8 ? 'Weak' : 'Strong' 
+}
+console.log(pass2('hsskkju'));
+//03
+function pass3 (password){
+    let passwordStrong = password.length > 8 && 'Strong';
+    return passwordStrong == 'Strong' ? 'Strong' : 'Weak';
+}
+console.log(pass3('hkfhhj'));
+
+//04
+function advanced (password){
+    return password.length > 7 && password.match(/[A-Z]/)
+    ? 'VereStrong' : password.length > 7  ? 'Strong' : 'Weak'
+}
+console.log(advanced('nmc'));
