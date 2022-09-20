@@ -1,8 +1,5 @@
 const prompt = require("prompt-sync")();
 
-
-
-
 function countryToLiveIn(language, isIsland, population, country) {
     if (language =='english' && population < 50 && !isIsland)
     {
