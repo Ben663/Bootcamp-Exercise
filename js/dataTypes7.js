@@ -1,21 +1,10 @@
-// From function declarations to function expressions
-const welcome = function () {
-    return 'Welcome to Appleseeds Bootcamp!';
-};
-
-const power = function (a) {
-    return Math.pow(a, 2);
-};
-
-const add = function (a, b = 5) {
-    return a + b;
-};
-
-// From function expressions to function declarations
-function hello() {
-    return 'Hello!';
-}
-
-function randomNumbers(a, b) {
-    return Math.random() * (a - b) + b;
-}
+function percentageOfWorld1(population) {
+    return (population / 7900) * 100;
+  }
+  const percentageOfWorld2 = function (population) {
+    return (population / 7900) * 100;
+  };
+  const percPortugal1 = percentageOfWorld1(10);
+  const percChina1 = percentageOfWorld1(1441);
+  const percUSA1 = percentageOfWorld1(332);
+  console.log(percPortugal1, percChina1, percUSA1);
