@@ -16,5 +16,5 @@ const library = [
     },
 
 ];
-const res = library.find(({readingStatus}) => readingStatus === true);
+const res = library.filter(({readingStatus}) => readingStatus === true);
 console.log(res);
