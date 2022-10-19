@@ -6,10 +6,9 @@ make the text “you’re too young” appear.
 */
 const ageup = document.querySelectorAll('.number')
 function age (number)  {
-    return (input.number == '18') ? 'you can drink appear' : 'you to young '
-    
-
+    alert((document.getElementById('Number').value*1 > 18) ? 'you can drink appear' : 'you too young ')
 }
+
 
 
 
