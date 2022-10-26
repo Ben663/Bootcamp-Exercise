@@ -18,15 +18,15 @@ const getRecipe = (recipeID) => {
     });
 };
 
-getIDs()
-    .then((IDs) => {
-        console.log(IDs);
-        return getRecipe(IDs[2]);
-    }).then((recipe) => {
-        console.log(recipe);
-    }).catch((error) => {
-        console.log("It is an error!");
-    });
+// getIDs()
+//     .then((IDs) => {
+//         console.log(IDs);
+//         return getRecipe(IDs[2]);
+//     }).then((recipe) => {
+//         console.log(recipe);
+//     }).catch((error) => {
+//         console.log("It is an error!");
+//     });
 /*
 The Task:
 Your task is to convert the consumed promise not to use .then
