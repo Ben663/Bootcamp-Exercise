@@ -23,7 +23,7 @@ const sortWord = (arr) => {
 }
 makeAllCaps(arr1)
 .then((res) => {
-    console.log('resolve')
+    //console.log('resolve')
     return sortWord(res.arr1);
 }).then((arr2Res) => {
     console.log(arr2Res);
