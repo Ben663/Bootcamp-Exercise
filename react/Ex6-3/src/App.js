@@ -13,10 +13,11 @@ function App() {
   
   return (
     <div className='App'>
+      <header>
       <button onClick={clickHandler}>increment</button>
       <button onClick={clickHandler1}>decrement</button>
       <label className={toggle < 0 ? 'red' : (toggle === 0 ? 'black' : 'green')} >{toggle}</label>
-     
+      </header>
     </div>
   );
 }
