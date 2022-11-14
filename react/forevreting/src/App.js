@@ -1,12 +1,17 @@
-import { useState } from 'react';
+
+
 import './App.css';
-
-import Survey from './Survey';
-
+import UserList from './components/UserList';
 function App() {
 	return (
-		<div className='container'>
-			< Survey/>
+		<div className='App'>
+			<header className='App-header'>
+				<img
+					className='App-logo'
+					alt='logo'
+				/>
+				<UserList></UserList>
+			</header>
 		</div>
 	);
 }
