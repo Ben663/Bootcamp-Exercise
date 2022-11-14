@@ -1,17 +1,13 @@
 
 
+import React from 'react';
+import UserList from './Component/Usercomponent';
 import './App.css';
-import UserList from './components/UserList';
+
 function App() {
 	return (
 		<div className='App'>
-			<header className='App-header'>
-				<img
-					className='App-logo'
-					alt='logo'
-				/>
-				<UserList></UserList>
-			</header>
+			<UserList></UserList>
 		</div>
 	);
 }
