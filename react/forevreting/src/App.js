@@ -1,129 +1,155 @@
-import React, { useState, useEffect, useReducer } from 'react';
 
-
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './App.css';
-const initialState = [
-	{ name: 'bob', song: 'one love', id: 1, like: 0 },
-	{ name: 'miki', song: 'love', id: 2, like: 10 },
-	{ name: 'robert', song: 'one love', id: 3, like: 20 },
-	
-];
-
-const artistsReducer = (artistState, action) => {
-	switch (action.type) {
-		case 'add_artist':
-			return [...artistState, action.payload];
-		case 'add_like':
-			const id = action.payload;
-			return artistState.map((artist) => {
-				if (id === artist.id) {
-					artist.like++;
-					return artist;
-				}
-				return artist;
-			});
-		default:
-			return artistState;
-	}
-}
+//! useReducer ????
+//https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/433.jpg
 function App() {
-	const [artists, dispatchArtists] = useReducer(artistsReducer, initialState);
-	const [taskArr, setTaskArr] = useState(JSON.parse(localStorage.taskArr));
+	// localStorage.taskArr ? JSON.parse(localStorage.taskArr) : []
+	const [taskArr, setTaskArr] = useState([]);
 	const [inputVal, setInputVal] = useState('');
+	const [inputImg, setInputImg] = useState('');
+	const [isLoading, setIsLoading] = useState(false);
+	const [errorMes, setErrorMes] = useState(null);
 
-	// useEffect(() => {
-	// 	if (localStorage.taskArr) {
-	// 		const formJL = JSON.parse(localStorage.taskArr)
-	// 		setTaskArr(formJL);
-	// 	}
-	// }, [])
 	useEffect(() => {
-		const dataToLS = JSON.stringify(taskArr);
-		localStorage.setItem('taskArr', dataToLS);
-	}, [taskArr]);
+		//? Read
+		const fetchData = async () => {
+			try {
+				setIsLoading(true);
+				const { data } = await axios.get(
+					'https://605b218e27f0050017c063ab.mockapi.io/todos'
+				);
+				setTaskArr(data);
+				setIsLoading(false);
+			} catch (e) {
+				setErrorMes(e.message);
+				setTimeout(() => {
+					setErrorMes(null);
+				}, 1500);
+			}
+		};
+		fetchData();
+	}, []);
 
-	const handleInput = ({ target: { value } }) => {
-		setInputVal(value);
+	const handleAddTask = async () => {
+		if (inputVal.trim()) {
+			try {
+				setIsLoading(true);
+				const { data } = await axios.post(
+					'https://605b218e27f0050017c063ab.mockapi.io/todos',
+					{
+						task: inputVal,
+						img: inputImg,
+						done: false,
+					}
+				);
+				setTaskArr((prev) => [...prev, data]);
+				setInputVal('');
+				setInputImg('');
+				setIsLoading(false);
+			} catch (e) {
+				setErrorMes(e.message);
+			}
+		}
 	};
-		// create
-	const handleClick = () => {
-		//! bad
-		// const tempState = [...taskArr, { value: inputVal, done: false }] 
-		setTaskArr((prev) => [...prev, { value: inputVal, done: false }]);
-		setInputVal('');
-		
-		
-	};
-	// update
-	const handleUpdate = (index) => {
-		setTaskArr((prev) => {
-			return prev.map((task, mapIndex) => {
-				if (mapIndex !== index) {
-					return task;
-				} else {
-					task.done = !task.done;
-					return task;
+
+	//! update localStorage
+	//? Update
+	const handleUpdate = async (id, oldDone) => {
+		try {
+			setIsLoading(true);
+			const { data } = await axios.put(
+				`https://605b218e27f0050017c063ab.mockapi.io/todos/${id}`,
+				{
+					done: !oldDone,
 				}
-			})
-		})
+			);
+			setTaskArr((prev) => {
+				return prev.map((task) => {
+					if (task.id !== id) {
+						return task;
+					} else {
+						return data;
+					}
+				});
+			});
+			setIsLoading(false);
+		} catch (e) {
+			setErrorMes(e.message);
+			setTimeout(() => {
+				setErrorMes(null);
+			}, 1500);
+		}
 	};
-	//delete
-	const handleDelete = (index) => {
-		setTaskArr((prevState) => 
-			prevState.filter((task, mapInput) => {
-			return mapInput !== index
-			})
-		)
+
+	//! update localStorage
+	//? Delete
+	const handleDelete = async (id) => {
+		try {
+			const { data } = await axios.delete(
+				`https://605b218e27f0050017c063ab.mockapi.io/todos/${id}`
+			);
+			console.log(data);
+			setTaskArr((prevState) =>
+				prevState.filter((task) => {
+					return task.id !== data.id;
+				})
+			);
+		} catch (e) {
+			setErrorMes(e.message);
+			setTimeout(() => {
+				setErrorMes(null);
+			}, 1500);
+		}
 	};
-	
+
 	return (
-		<div>
-			<button
-				onClick={() => {
-					dispatchArtists({
-						type: 'add_artist',
-						payload: { name: 'jim', song: 'love', id: 4, like: 44 },
-					});
-				}}>
-				add artists
-			</button>
-			<button
-				onClick={() => {
-					dispatchArtists({
-						type: 'add_like',
-						payload: 2,
-					});
-				}}>
-				add Like
-			</button>
-			{console.table(artists)}
-			<h1>TOD's</h1>
-			<h3>Local Storege CRDU app</h3>
+		<div className='App'>
+			<h1>Todo</h1>
+			{errorMes && <h2>{errorMes}</h2>}
 			<input
 				value={inputVal}
-				onChange={handleInput}
+				placeholder='Task'
+				onChange={({ target: { value } }) => setInputVal(value)}
 			/>
-			<button onClick={handleClick}>add Task</button>
-			{/* read */}
-			{taskArr.map((task, mapIndex) => (
-				<div key={task.value + mapIndex}>
-					<h2
-						onClick={() => {
-							handleUpdate(mapIndex);
-						}}>
-						{task.value} -- {task.done ? 'V' : 'X'}
-					</h2>
-					<button
-						onClick={() => {
-							handleDelete(mapIndex);
-						}}>
-						Delete
-					</button>
+			<input
+				value={inputImg}
+				placeholder='Image'
+				onChange={({ target: { value } }) => setInputImg(value)}
+			/>
+			<button onClick={handleAddTask}>Add Task</button>
+			{/* //? Read */}
+
+			{isLoading && <h1 className='spinner'>Spinner O</h1>}
+			{setTaskArr.length && (
+				<div className='todos_container'>
+					{taskArr.map(({ task, id, img, done }, mapIndex) => (
+						<div
+							className='todo'
+							key={id}>
+							<h3
+								onClick={() => {
+									handleUpdate(id, done);
+								}}>
+								{task} - {done ? 'V' : 'X'}
+							</h3>
+							<img
+								src={img}
+								alt={task}
+							/>
+							<button
+								onClick={() => {
+									handleDelete(id);
+								}}>
+								Delete
+							</button>
+						</div>
+					))}
 				</div>
-			))}
+			)}
 		</div>
 	);
-	
 }
 
 export default App;
