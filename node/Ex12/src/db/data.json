@@ -1,0 +1,23 @@
+[
+     {
+        "title": "Tangled",
+        "image": "http://api.androidhive.info/json/movies/8.jpg",
+        "rating": 7.9,
+        "releaseYear": 2010,
+        "genre": ["Action", "Drama", "Sci-Fi"]
+    },
+    {
+        "title": "Rush",
+        "image": "http://api.androidhive.info/json/movies/9.jpg",
+        "rating": 8.3,
+        "releaseYear": 2013,
+        "genre": ["Animation", "Comedy", "Family"]
+    },
+    {
+        "title": "Drag Me to Hell",
+        "image": "http://api.androidhive.info/json/movies/10.jpg",
+        "rating": 6.7,
+        "releaseYear": 2009,
+        "genre": ["Horror", "Thriller"]
+    }
+]
