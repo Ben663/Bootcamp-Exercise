@@ -85,6 +85,33 @@ export const patchProduct = async (req, res) => {
         res.status(404).send(err);
     }
 }
-
+export const deleteItem = async (req, res) => {
+    try {
+        const { id } = req.body.id;
+        const deleteProduct = product.findByIdRemove({ _id: id }, (err, results) => {
+            if (err) {
+                res.status(404).send('error to delete');
+            } else {
+                res.status(200).send(`${results} item deleted`)
+            }
+        })
+    } catch (err) {
+        res.status(404).send(err)
+    }
+};
+export const deleteAll = async (req, res) => {
+    try {
+        product.deleteMany((err, results) => {
+            if (err) {
+                res.status(404).send('error to delete')
+            } else {
+                res.status(200).send('all items are deleted')
+            }
+        })
+    } catch (err) {
+        res.status(404).send(err)
+        
+    }
+};
 
 

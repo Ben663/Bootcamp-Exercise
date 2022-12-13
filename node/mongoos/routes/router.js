@@ -5,7 +5,9 @@ import {
 	getProductByActive,
 	getProductByPrice,
 	patchProduct,
-	postProduct
+	postProduct,
+	deleteItem,
+	deleteAll,
 } from '../controllers/index.controller.js';
 
 export const indexApi = Router();
@@ -18,6 +20,8 @@ indexApi.get('/product/price', getProductByPrice);
 indexApi.post('/product', postProduct);
 
 indexApi.patch('/product/:id', patchProduct);
+indexApi.delete('/product/:id', deleteItem)
+indexApi.delete('/product/', deleteAll)
 
 
  
