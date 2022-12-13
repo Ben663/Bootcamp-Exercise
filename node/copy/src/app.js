@@ -1,33 +1,15 @@
-const http = require('http');
-const url = require('url');
-const fs = require('fs');
+import express from 'express'
+import cors from 'cors';
+import {weather} from './controllers/Weather.js'
 
-function handler(req, res) {
-	const parsedUrl = url.parse(req.url, true);
+const app = express();
+const PORT = '6000';
 
-	if (req.url === '/raw-html') {
-		res.writeHead(200, { 'Content-type': 'text/html; charset=utf-8' });
-		res.end('<h1>Welcome</h1>');
-	} else if (req.url === '/users') {
-		res.writeHead(200, { 'Content-type': 'application/json' });
-		res.end('{ "name": "yael", "age": 38 }, { "name": "yitz", "age": 33 }');
-	} else if (req.url === '/') {
-		res.writeHead(200, { 'Content-Type': 'text/html' });
-		const indexData = fs.readFileSync('index.html');
-		res.write(indexData);
-	} else if (req.url === '/index.css') {
-		res.writeHead(200, { 'Content-Type': 'text/css' });
-		const indexCssData = fs.readFileSync('index.css');
-		res.write(indexCssData);
-	} else if (req.url === '/index.js') {
-		res.writeHead(200, { 'Content-Type': 'text/js' });
-		const indexJsData = fs.readFileSync('index.js');
-		res.write(indexJsData);
-	}
-}
+// app.use(express.json());
+app.use(cors());
+app.use('/api', weather);
 
-const server = http.createServer(handler);
-server.listen(3000, () => {
-	console.log('server is running on port 3000');
-});
 
+app.listen(PORT, () => {
+	console.log('im in server' + PORT);
+})
