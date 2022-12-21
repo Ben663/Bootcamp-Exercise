@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+//{Schema, model}
 import '../connect/js';
 
 export const dataSchema = new mongoose.Schema({
